@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'signing'
+
+status = 'debug'
+
+android {
+    compileSdkVersion rootProject.compileSdk
+    buildToolsVersion rootProject.buildTools
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdk
+        targetSdkVersion rootProject.targetSdk
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+    buildTypes {
+        release {
+            status = 'release'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //    compile rootProject.depRajawali
+    //    compile(name:'rajawali-1.1.777', ext:'aar')
+    //    compile(name:'vr-1.1.777', ext:'aar')
+    compile rootProject.depAppCompat
+    compile files('libs/httpcore-4.1.jar')
+}
